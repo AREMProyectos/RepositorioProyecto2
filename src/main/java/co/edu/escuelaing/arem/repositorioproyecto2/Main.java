@@ -28,7 +28,7 @@ public class Main {
   @RequestMapping(method = RequestMethod.GET, path = "/{number}")
     public ResponseEntity<?> getSquare(@PathVariable int number){
          
-        return new ResponseEntity(number*number,HttpStatus.OK);
+        return new ResponseEntity<>(number*number,HttpStatus.OK);
     }
 
   
