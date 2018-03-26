@@ -1,1 +1,1 @@
-web:    java -jar target/proyecto.jar
+web:    java -jar target/repositorioProyecto2-1.0-SNAPSHOT.jar
