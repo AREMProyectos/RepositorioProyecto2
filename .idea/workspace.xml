@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5928aff6-4a21-43f8-97ba-690728d5bad5" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/repositorioProyecto2.iml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/escuelaing/arem/repositorioproyecto2/Main.java" afterPath="$PROJECT_DIR$/src/main/java/co/edu/escuelaing/arem/repositorioproyecto2/Main.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/escuelaing/arem/repositorioproyecto2/Main.class" afterPath="$PROJECT_DIR$/target/classes/co/edu/escuelaing/arem/repositorioproyecto2/Main.class" />
-    </list>
+    <list default="true" id="5928aff6-4a21-43f8-97ba-690728d5bad5" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -263,12 +259,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1522254634271</updated>
-      <workItem from="1522254652325" duration="145000" />
+      <workItem from="1522254652325" duration="796000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145000" />
+    <option name="totallyTimeSpent" value="796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="-4" width="1360" height="772" extended-state="6" />
