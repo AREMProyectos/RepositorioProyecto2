@@ -1,13 +1,17 @@
-package co.edu.escuelaing.arem.awsapp;
+package co.edu.escuelaing.arem.awsserver;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -48,6 +52,21 @@ public class WebServerThread implements Runnable{
         
         while ((inputLine = in.readLine()) != null) {
             System.out.println("Received: " + inputLine);
+            if(inputLine.startsWith("GET")){
+                String query = inputLine.split(" ")[1];
+                if(query.equals("/") || query.equals("/index.html")){
+                    File indexFile = new File(WebServerThread.class.getResource("/index.html").getFile());
+                    String output = null;
+                    try {
+                        output = FileUtils.readFileToString(indexFile, StandardCharsets.UTF_8);
+                    } catch (IOException ex) {
+                        Logger.getLogger(WebServerThread.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    outputLine = "HTTP/1.1 200 OK\r\n"
+                    + "Content-Type: text/html\r\n\r\n" + output;
+                        out.println(outputLine);
+                }
+            }
             
             if (!in.ready()) {
                 break;

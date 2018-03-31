@@ -1,5 +1,5 @@
 
-package co.edu.escuelaing.arem.awsapp;
+package co.edu.escuelaing.arem.awsserver;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -8,10 +8,12 @@ import java.util.concurrent.Executors;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
+/**
+ *
+ * @author Juan David
+ */
 public class WebServer {
 
-    //private static final int CONCURRENT_THREADS = 4;
     
     public static void main(String[] args) {
         Integer environmentPort = null;
@@ -19,7 +21,6 @@ public class WebServer {
         try {
             environmentPort = 8080;
             //environmentPort = new Integer(System.getenv("PORT"));
-            //System.out.println("PORT: " + port);
             serverSocket = new ServerSocket(environmentPort);
         } catch (IOException e) {
             //Falta agregar el logger

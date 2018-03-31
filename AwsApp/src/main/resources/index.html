@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Server application</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form>
+            Number: <input type="number" id="number"><br>
+            <input type="submit" value="Submit" onclick='this.form.action="/response/"+document.getElementById("number").value;'>
+        </form>
+    </body>
+</html>
