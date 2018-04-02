@@ -28,12 +28,12 @@ public class WebServer {
             System.exit(1);
         }
         
-        //ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-        //HTMLBuilder htmlBuilder = ac.getBean(HTMLBuilderImpl.class);
+         ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+         ApplicationBean gc = ac.getBean(ApplicationBeanImpl.class);
         
         ExecutorService executor = Executors.newFixedThreadPool(5);
         for (int i = 0; i < 5; i++) {
-            Runnable server = new WebServerThread(serverSocket);
+            Runnable server = new WebServerThread(serverSocket,gc);
             executor.execute(server);
         } 
     }

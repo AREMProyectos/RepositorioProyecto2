@@ -22,16 +22,16 @@ import org.springframework.stereotype.Service;
  *
  * @author Juan David
  */
-@Service
+
 public class WebServerThread implements Runnable{
     
     private ServerSocket serverSocket;
-    
-    @Autowired
-    WebApplication apiWeb;
+    private ApplicationBean gc;
+ 
 
-    WebServerThread(ServerSocket serverSocket) {
+    WebServerThread(ServerSocket serverSocket,ApplicationBean gc) {
         this.serverSocket = serverSocket;
+        this.gc=gc;
     }
 
     @Override
@@ -89,18 +89,18 @@ public class WebServerThread implements Runnable{
                 }*/
                 else if(query.contains("response")){
                     
-                    ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-                    ApplicationBean gc = ac.getBean(ApplicationBean.class);
-                    gc.getMessage();
+                   // ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+                   // ApplicationBean gc = ac.getBean(ApplicationBeanImpl.class);
+                    //System.out.println(gc.getMessage());
                    // System.out.println(apiWeb.  );
                   /**  System.out.println("DIOMEDAZOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                     File indexFile = new File(WebServerThread.class.getResource("/response.html").getFile());
-                    
+                    **/
                     outputLine = "HTTP/1.1 200 OK\r\n"
-                    + "Content-Type: text/html\r\n\r\n" + apiWeb.getResult(query.split("/")[1]);
+                    + "Content-Type: text/html\r\n\r\n" + gc.getAPIResponse(query.split("/")[2]);
                         out.println(outputLine);
                     
-                    **/
+                   
                 }
             }
             

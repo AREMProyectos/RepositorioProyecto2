@@ -5,20 +5,10 @@
  */
 package co.edu.escuelaing.arem.awsserver;
 
-import co.edu.escuelaing.arem.awsserver.webapplication.WebApplication;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 /**
  *
- * @author 2110805
+ * @author 2115237
  */
-@Service
-public class ApplicationBean {
-    @Autowired
-    WebApplication api;
-    
-    public void getMessage(){
-        api.getResult("2");
-    }
+public interface ApplicationBean {
+    String getAPIResponse(String number);
 }
