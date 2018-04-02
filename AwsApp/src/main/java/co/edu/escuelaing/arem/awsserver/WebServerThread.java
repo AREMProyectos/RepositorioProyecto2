@@ -1,5 +1,6 @@
 package co.edu.escuelaing.arem.awsserver;
 
+import co.edu.escuelaing.arem.awsserver.webapplication.WebApplication;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -12,14 +13,22 @@ import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Juan David
  */
+@Service
 public class WebServerThread implements Runnable{
     
     private ServerSocket serverSocket;
+    
+    @Autowired
+    WebApplication apiWeb;
 
     WebServerThread(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
@@ -65,6 +74,33 @@ public class WebServerThread implements Runnable{
                     outputLine = "HTTP/1.1 200 OK\r\n"
                     + "Content-Type: text/html\r\n\r\n" + output;
                         out.println(outputLine);
+                }
+                /*else if(query.equals("/favicon.ico")){
+                    File indexFile = new File(WebServerThread.class.getResource("/favico.ico").getFile());
+                    String output = null;
+                    try {
+                        output = FileUtils.readFileToString(indexFile, StandardCharsets.UTF_8);
+                    } catch (IOException ex) {
+                        Logger.getLogger(WebServerThread.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    outputLine = "HTTP/1.1 200 OK\r\n"
+                    + "Content-Type: text/html\r\n\r\n" + output;
+                        out.println(outputLine);
+                }*/
+                else if(query.contains("response")){
+                    
+                    ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+                    ApplicationBean gc = ac.getBean(ApplicationBean.class);
+                    gc.getMessage();
+                   // System.out.println(apiWeb.  );
+                  /**  System.out.println("DIOMEDAZOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                    File indexFile = new File(WebServerThread.class.getResource("/response.html").getFile());
+                    
+                    outputLine = "HTTP/1.1 200 OK\r\n"
+                    + "Content-Type: text/html\r\n\r\n" + apiWeb.getResult(query.split("/")[1]);
+                        out.println(outputLine);
+                    
+                    **/
                 }
             }
             
