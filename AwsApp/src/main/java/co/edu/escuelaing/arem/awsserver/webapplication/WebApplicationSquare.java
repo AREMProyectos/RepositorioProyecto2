@@ -22,6 +22,11 @@ import org.springframework.stereotype.Service;
 public class WebApplicationSquare implements WebApplication{
 
     private URL apiHeroku;
+    /**
+     * Connect the server with a heroku application to process the given number and return the square of it
+     * @param number The number that client want to know square
+     * @return The square of the given number
+     */
     @Override
     public String getResult(String number) {
         try {
