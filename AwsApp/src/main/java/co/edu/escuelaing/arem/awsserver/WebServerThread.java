@@ -29,12 +29,18 @@ public class WebServerThread implements Runnable{
     private ServerSocket serverSocket;
     private ApplicationBean gc;
  
-
+    /**
+     * Constructor of Web Server Thread
+     * @param serverSocket The server socket you want to connect
+     * @param gc The bean we want to use to do some necessary process
+     */
     WebServerThread(ServerSocket serverSocket,ApplicationBean gc) {
         this.serverSocket = serverSocket;
         this.gc=gc;
     }
-
+    /**
+     * Run the initial method of the class that will be executed when the thread start
+     */
     @Override
     public void run() {
         try {
@@ -45,7 +51,10 @@ public class WebServerThread implements Runnable{
             Logger.getLogger(WebServerThread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /**
+     * Starts the socket of the client, show the current status and process the given values of the page.
+     * @throws IOException  
+     */
     private void init() throws IOException{
         Socket clientSocket = null;
         try {

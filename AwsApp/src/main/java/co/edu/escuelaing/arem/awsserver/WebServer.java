@@ -14,7 +14,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class WebServer {
 
-    
+    /**
+     * Main method of the Web Server
+     * @param args The context of the class
+     */
     public static void main(String[] args) {
         Integer environmentPort = null;
         ServerSocket serverSocket = null;

@@ -18,13 +18,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @SpringBootApplication
 public class Main {
 
-
-  public static void main(String[] args) throws Exception {
-    
-    SpringApplication.run(Main.class, args);
-  }
-
-  @RequestMapping(method = RequestMethod.GET, path = "/{number}")
+    /**
+     * Main method of the class
+     * @param args Context
+     * @throws Exception 
+     */
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(Main.class, args);
+    }
+    /**
+     * Map the current ResponseEntity with the given number
+     * @param number Number client want to process
+     * @return  The square of the number
+     */
+    @RequestMapping(method = RequestMethod.GET, path = "/{number}")
     public ResponseEntity<?> getSquare(@PathVariable int number){
         return new ResponseEntity<>(number*number,HttpStatus.OK);
     }
