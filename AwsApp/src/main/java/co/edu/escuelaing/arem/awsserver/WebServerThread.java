@@ -2,7 +2,7 @@ package co.edu.escuelaing.arem.awsserver;
 
 import co.edu.escuelaing.arem.awsserver.webapplication.WebApplication;
 import java.io.BufferedReader;
-import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -16,6 +16,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 /**
@@ -64,10 +65,17 @@ public class WebServerThread implements Runnable{
             if(inputLine.startsWith("GET")){
                 String query = inputLine.split(" ")[1];
                 if(query.equals("/") || query.equals("/index.html")){
-                    File indexFile = new File(WebServerThread.class.getResource("/index.html").getFile());
-                    String output = null;
+                    Resource uri = new ClassPathXmlApplicationContext("applicationContext.xml").getResource("/index.html");
+                    String output = "";
                     try {
-                        output = FileUtils.readFileToString(indexFile, StandardCharsets.UTF_8);
+                        InputStream is = uri.getInputStream();
+                        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                        
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                           output+=line;
+                        } 
+                        br.close();
                     } catch (IOException ex) {
                         Logger.getLogger(WebServerThread.class.getName()).log(Level.SEVERE, null, ex);
                     }
