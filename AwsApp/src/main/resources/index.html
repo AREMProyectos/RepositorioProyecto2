@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Server application</title>
+        <title>Square web application</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="#">
     </head>
-    <body>
-        <form>
-            Number: <input type="number" id="number"><br>
-            <input type="submit" value="Submit" onclick='this.form.action="/response/"+document.getElementById("number").value;'>
-        </form>
+    <body style="background-color:black;">
+        <div align="center" style="height: 70px;">
+            <h1 style="color: white">Square calculator API</h1>
+            <form style="background-color: #A9A9A9; width: 23%; height: 70%; color: black; border-radius: 7px; border-color: darkgray; font-size: 125%; font-weight: bold" >
+                Number: <input type="number" id="number" style="color: black;font-weight: bold"><br>
+                <input type="submit" value="Submit" onclick='this.form.action="/response/"+document.getElementById("number").value;' style="background-color:black; color: white; font-weight: bolder; border-radius: 17px;">
+            </form>
+        </div>
+	
     </body>
 </html>

@@ -92,33 +92,29 @@ public class WebServerThread implements Runnable{
                     + "Content-Type: text/html\r\n\r\n" + output;
                         out.println(outputLine);
                 }
-                /*else if(query.equals("/favicon.ico")){
-                    File indexFile = new File(WebServerThread.class.getResource("/favico.ico").getFile());
-                    String output = null;
+                else if(query.contains("response")){
+                    Resource uri = new ClassPathXmlApplicationContext("applicationContext.xml").getResource("/response.html");
+                    String output = "";
                     try {
-                        output = FileUtils.readFileToString(indexFile, StandardCharsets.UTF_8);
+                        InputStream is = uri.getInputStream();
+                        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                        
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                           output+=line;
+                        } 
+                        br.close();
                     } catch (IOException ex) {
                         Logger.getLogger(WebServerThread.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    String response = output.replace("{square}",gc.getAPIResponse(query.split("/")[2]));
                     outputLine = "HTTP/1.1 200 OK\r\n"
-                    + "Content-Type: text/html\r\n\r\n" + output;
-                        out.println(outputLine);
-                }*/
-                else if(query.contains("response")){
-                    
-                   // ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-                   // ApplicationBean gc = ac.getBean(ApplicationBeanImpl.class);
-                    //System.out.println(gc.getMessage());
-                   // System.out.println(apiWeb.  );
-                  /**  System.out.println("DIOMEDAZOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-                    File indexFile = new File(WebServerThread.class.getResource("/response.html").getFile());
-                    **/
-                    outputLine = "HTTP/1.1 200 OK\r\n"
-                    + "Content-Type: text/html\r\n\r\n" + gc.getAPIResponse(query.split("/")[2]);
+                    + "Content-Type: text/html\r\n\r\n" + response;
                         out.println(outputLine);
                     
                    
                 }
+                
             }
             
             if (!in.ready()) {
