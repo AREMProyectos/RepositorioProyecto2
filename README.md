@@ -6,7 +6,7 @@
 ### Link aplicacion REST en Heroku
 Para acceder a la aplicacion en heroku ingrese [aqui](https://thawing-bastion-53139.herokuapp.com/)
 #### Observacion
-Si desea probar el servicio rest debe ingresar el link con su respectiva PathVariable.
+Si desea probar el servicio REST debe ingresar el link con su respectiva PathVariable.
 Por ejemplo:
 ```
 https://thawing-bastion-53139.herokuapp.com/45
