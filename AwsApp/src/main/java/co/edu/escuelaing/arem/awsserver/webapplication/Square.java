@@ -30,6 +30,7 @@ public class Square implements WebApplication{
        System.out.println(number);
         try {
            apiHeroku = new URL("https://thawing-bastion-53139.herokuapp.com?number="+number);
+           System.out.println(" YAAAAAAAAA: "+apiHeroku.toString());
         } catch (MalformedURLException ex) {
             Logger.getLogger(Square.class.getName()).log(Level.SEVERE, null, ex);
         }

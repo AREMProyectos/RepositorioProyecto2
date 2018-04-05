@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @SpringBootApplication
@@ -31,8 +32,8 @@ public class Main {
      * @param number Number client want to process
      * @return  The square of the number
      */
-    @RequestMapping(method = RequestMethod.GET, path = "/{number}")
-    public ResponseEntity<?> getSquare(@PathVariable int number){
+    @RequestMapping(value="")
+    public ResponseEntity<?> getSquare(@RequestParam("number") int number){
         return new ResponseEntity<>(number*number,HttpStatus.OK);
     }
 
