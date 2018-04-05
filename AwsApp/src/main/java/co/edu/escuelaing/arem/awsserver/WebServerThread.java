@@ -88,7 +88,7 @@ public class WebServerThread implements Runnable {
                             + "Content-Type: text/html\r\n\r\n" + output;
                     out.println(outputLine);
                 } else if (query.contains("response")) {
-                    System.out.println(query.split("/")[2]);
+                    URL p = new URL("http://localhost:8085"+query);
                     try {
                         Object instance;
                         instance = Class.forName("co.edu.escuelaing.arem.awsserver.webapplication." + query.split("/")[2].split("\\?")[0]).newInstance();
@@ -100,7 +100,7 @@ public class WebServerThread implements Runnable {
                         } catch (IOException ex) {
                             Logger.getLogger(WebServerThread.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        String response = output.replace("{square}", instanceApi.getResult(query.split("/")[2].split("\\?")[1].split("=")[1]));
+                        String response = output.replace("{square}", instanceApi.getResult(p.getQuery()));
                         outputLine = "HTTP/1.1 200 OK\r\n"
                                 + "Content-Type: text/html\r\n\r\n" + response;
                         out.println(outputLine);
