@@ -12,14 +12,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Juan David
  */
-@Service
-public class WebApplicationSquare implements WebApplication{
+public class Square implements WebApplication{
 
     private URL apiHeroku;
     /**
@@ -29,10 +27,11 @@ public class WebApplicationSquare implements WebApplication{
      */
     @Override
     public String getResult(String number) {
+       System.out.println(number);
         try {
-            apiHeroku = new URL("https://thawing-bastion-53139.herokuapp.com/"+number);
+           apiHeroku = new URL("https://thawing-bastion-53139.herokuapp.com?number="+number);
         } catch (MalformedURLException ex) {
-            Logger.getLogger(WebApplicationSquare.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Square.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String response = "";

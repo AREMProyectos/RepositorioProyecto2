@@ -9,10 +9,9 @@
     <body style="background-color:black;">
         <div align="center" style="height: 70px;">
             <h1 style="color: white">Square calculator API</h1>
-            <form style="background-color: #A9A9A9; width: 23%; height: 70%; color: black; border-radius: 7px; border-color: darkgray; font-size: 125%; font-weight: bold" >
-                Number: <input type="number" id="number" style="color: black;font-weight: bold"><br>
-                <input type="submit" value="Submit" onclick='this.form.action="/response/"+document.getElementById("number").value;' style="background-color:black; color: white; font-weight: bolder; border-radius: 17px;">
-            </form>
+            Number: <input type="number" id="number" style="color: black;font-weight: bold"><br>
+            <input type="submit" value="Submit" onclick="location.href='/response/Square?number='+document.getElementById('number').value;" style="background-color:black; color: white; font-weight: bolder; border-radius: 17px;">
+          
         </div>
 	
     </body>

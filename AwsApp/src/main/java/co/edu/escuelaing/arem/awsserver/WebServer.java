@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -31,12 +29,10 @@ public class WebServer {
             System.exit(1);
         }
         
-         ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-         ApplicationBean gc = ac.getBean(ApplicationBeanImpl.class);
         
         ExecutorService executor = Executors.newFixedThreadPool(5);
         for (int i = 0; i < 5; i++) {
-            Runnable server = new WebServerThread(serverSocket,gc);
+            Runnable server = new WebServerThread(serverSocket);
             executor.execute(server);
         } 
     }
