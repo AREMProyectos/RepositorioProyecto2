@@ -4,6 +4,7 @@ import co.edu.escuelaing.arem.awsserver.webapplication.WebApplication;
 import co.edu.escuelaing.arem.awsserver.webapplication.Square;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -76,11 +77,17 @@ public class WebServerThread implements Runnable {
                 System.out.println(inputLine);
                 String query = inputLine.split(" ")[1];
                 System.out.println(query);
-                if (query.equals("/") || query.equals("/index.html")) {
-                    File indexFile = new File(WebServerThread.class.getResource("/index.html").getFile());
-                    String output = null;
+                if (query.equals("/") || query.equals("classes/index.html")) {
+                    File indexFile = new File("classes/index.html");
+                    String output = "";
+                    String line;
                     try {
-                        output = FileUtils.readFileToString(indexFile, StandardCharsets.UTF_8);
+                        FileReader fr = new FileReader(indexFile);
+                        BufferedReader bf = new BufferedReader(fr);
+
+                        while ((line = bf.readLine()) != null) {
+                            output += line;
+                        }
                     } catch (IOException ex) {
                         Logger.getLogger(WebServerThread.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -88,19 +95,25 @@ public class WebServerThread implements Runnable {
                             + "Content-Type: text/html\r\n\r\n" + output;
                     out.println(outputLine);
                 } else if (query.contains("response")) {
-                    URL p = new URL("http://localhost:8085"+query);
+                    URL p = new URL("http://localhost:8085" + query);
                     try {
                         Object instance;
                         instance = Class.forName("co.edu.escuelaing.arem.awsserver.webapplication." + query.split("/")[2].split("\\?")[0]).newInstance();
                         WebApplication instanceApi = (WebApplication) instance;
-                        File responseFile = new File(WebServerThread.class.getResource("/response.html").getFile());
-                        String output = null;
+                        File responseFile = new File("classes/response.html");
+                        String output = "";
+                        String line;
                         try {
-                            output = FileUtils.readFileToString(responseFile, StandardCharsets.UTF_8);
+                            FileReader fr = new FileReader(responseFile);
+                            BufferedReader bf = new BufferedReader(fr);
+
+                            while ((line = bf.readLine()) != null) {
+                                output += line;
+                            }
                         } catch (IOException ex) {
                             Logger.getLogger(WebServerThread.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        String response = output.replace("{square}", instanceApi.getResult(p.getQuery()));
+                        String response = output.replace("{square}", instanceApi.getResult(p.getQuery().split("=")[1]));
                         outputLine = "HTTP/1.1 200 OK\r\n"
                                 + "Content-Type: text/html\r\n\r\n" + response;
                         out.println(outputLine);

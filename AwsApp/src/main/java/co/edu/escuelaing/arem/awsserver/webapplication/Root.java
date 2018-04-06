@@ -9,11 +9,11 @@ package co.edu.escuelaing.arem.awsserver.webapplication;
  *
  * @author 2114928
  */
-public class Root implements WebApplication{
+public class Root implements WebApplication {
 
     @Override
     public String getResult(String number) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ":( Not supported yet ";
     }
-    
+
 }
